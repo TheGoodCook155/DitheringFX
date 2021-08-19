@@ -50,7 +50,7 @@ public class MainController {
 
     @FXML
     private void loadFiles() {
-//        System.out.println("test");
+
         allFiles.clear();
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Please choose file to convert");
@@ -64,17 +64,11 @@ public class MainController {
         List<File> files = chooser.showOpenMultipleDialog(pane.getScene().getWindow());
         if (files != null) {
             files.stream().forEach(e -> {
-//                System.out.println(e);
                 allFiles.add(e);
-//                System.out.println("============================");
-
             });
         } else if (files == null) {
             System.out.println("Canceled");
         }
-
-//        System.out.println("In all files ");
-//        allFiles.stream().forEach(e -> System.out.println(e));
     }
 
     @FXML
@@ -82,10 +76,7 @@ public class MainController {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Please select folder to save file/s");
         dir = chooser.showDialog(pane.getScene().getWindow());
-//        System.out.println(dir);
-        //save(BufferedImage image, File dir,File savedFile)
         String path = returnSavePath();
-
         Task task = new Color(allFiles, path);
         Thread thread = new Thread(task);
         progressBar.visibleProperty().bind(task.runningProperty());
@@ -103,7 +94,6 @@ public class MainController {
         });
 
         thread.start();
-
     }
 
 
